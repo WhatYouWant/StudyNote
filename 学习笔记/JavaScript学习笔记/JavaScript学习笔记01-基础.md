@@ -252,6 +252,199 @@ var carname = "Volvo xc60";
 var character = carname[5];
 var sln = carname.length;
 ```
+#JavaScript运算符
+用于字符串的+运算符
++运算符用于把文本值或字符串变量加起来（连接起来）。
+对字符串和数字进行加法运算，结果将成为字符串。
+#JavaScript 比较和逻辑运算符
+`===` 绝对等于（值和类型均相等）
+
+#JavaScript的 typeof, null, undefined
+typeof用来检测变量的数据类型。
+
+```
+typeof "John" //返回string
+typeof 3.14 	//返回number
+```
+null,表示什么都没有。
+null是一个只有一个值的特殊类型，表示一个空对象引用。
+可以设置对象为null来清空对象。可以设置为undefined来清空对象。
+```
+var person = null; //值为null(空), 但类型为对象。
+var person = undefined; //值为undefined, 类型为unfefined
+```
+undefined是一个没有设置值的变量。typeof一个没有值的变量会返回undefined。
+undefined和null区别：值相等，但是类型不等。
+
+#JavaScript类型转换
+5种数据类型：string, number, boolean, object, function
+3种对象类型: Object, Date, Array
+2个不包含任何值的数据类型: null, undefined
+
+instanceof
+ 
+```
+var arr = [1,2,3];
+if (arr instanceof Array) {
+	..
+}
+```
+constructor属性，返回所有JavaScript变量的构造函数。
+
+```
+“John”.constructor //返回函数 String() {[native code]}
+```
+数字转字符串，String()可以将数字转为字符串。Number方法toString()也有同样的效果。
+
+#JavaScript正则表达式
+正则表达式使用单个字符来描述，匹配一系列符合某个句法规则的字符串搜索模式。
+搜索模式可用于文本搜索和文本替换。
+##语法
+```
+/正则表达式主体/修饰符(可选)
+```
+例
+
+```
+var patt = /runoob/i
+```
+`runoob/i`是一个正则表达式。
+runoob 是一个正则表达式主体(用于检索)。
+i 是一个修饰符（搜索不区分大小写）。
+
+使用字符串方法。
+search()方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。
+replace()方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+例如
+
+```
+var str = "Visit Runoob!";
+var n = str.search(/Runoob/i); //搜索主体为正则表达式
+var n = str.search("Runoob"); //搜索主题为字符串
+```
+##正则表达式修饰符
+
+修饰符 | 描述
+------- | -------
+i | 执行对大小写不敏感的匹配。
+g | 执行全局匹配(查找所有匹配而非找到第一个匹配后就停止)。
+m | 执行多行匹配。
+
+##正则表达式模式
+方括号用于查找某个范围的字符。
+
+表达式 | 描述
+------- | -------
+[abc] | 查找方括号之间的任意字符
+[0-9] | 查找任何从0到9的数字
+(x|y) | 查找任何以 | 分割的选项。
+
+元字符是拥有特殊含义的字符：
+
+元字符 | 描述
+------- | -------
+\d | 查找数字。
+\s | 查找空白字符。
+\b | 匹配单词边界。
+\uxxxx | 查找以十六进制数xxxx规定的Unicode字符。
+
+量词：
+
+量词 | 描述
+------- | -------
+n+ | 匹配任何包含至少一个n的字符串。
+n* | 匹配任何包含零个或多个n的字符串。
+n? | 匹配任何包含零个或一个n的字符串。
+
+##RegExp对象
+在JS中，RegExp对象是一个预定义了属性和方法的正则表达式对象。
+##使用test()
+test() 方法是一个正则表达式方法。
+test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。
+```
+var patt1=new RegExp("e");
+var result = patt1.test("The best things in life are free");
+```
+##使用exec()
+exec() 方法是一个正则表达式方法。
+exec() 方法用于检索字符串中的正则表达式的匹配。
+该函数返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。
+正则表达式表单验证实例：
+
+```
+//是否带小数
+function isDecimal(strValue) {
+	var objRegExp = /^\d+\.\d+$/;
+	return objRegExp.test(strValue);
+}
+
+//校验是否中文名称组成
+function ischian(str) {
+	var reg=/^[\u4E00-\u9FA5]{2,4}$/;
+	return reg.test(str);
+}
+
+//校验是否全由8位数字组成
+function isStudentNo(str) {
+	var reg=/^[0-9]{8}$/;
+	return reg.test(str);
+}
+
+//校验电话码格式
+function isTelCode(str) {
+	var reg = \^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+	return reg.test(str);
+}
+
+//校验邮件地址是否合法
+function IsEmail(str) {
+	var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+$/;
+	return reg.test(str);
+}
+```
+
+#JavaScript错误
+try 语句允许我们定义在执行时进行错误测试的代码块。
+catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+JavaScript 语句 try 和 catch 是成对出现的。
+throw 语句允许我们创建自定义错误。
+语法
+
+```
+try {
+	//...运行代码 throw ...
+} catch(err) {
+	//...处理错误
+}
+```
+例子
+
+```
+function myFunction() {
+    var message, x;
+    message = document.getElementById("message");
+    message.innerHTML = "";
+    x = document.getElementById("demo").value;
+    try { 
+        if(x == "")  throw "值为空";
+        if(isNaN(x)) throw "不是数字";
+        x = Number(x);
+        if(x < 5)    throw "太小";
+        if(x > 10)   throw "太大";
+    }
+    catch(err) {
+        message.innerHTML = "错误: " + err;
+    }
+}
+```
+
+#JavaScript变量提升
+JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。
+JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。
+
+JavaScript 只有声明的变量会提升，初始化的不会。
+
+
 
 
 
